@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cloudplayplus-local",
+  "description": "CloudPlayPlus Claude Code plugin marketplace.",
+  "owner": {
+    "name": "CloudPlayPlus"
+  },
+  "plugins": [
+    {
+      "name": "cloudplayplus",
+      "description": "CloudPlayPlus channel for Claude Code — bridges CC to a long-running local Flutter app over MCP HTTP. Messages from CloudPlayPlus users are pushed into CC as channel notifications; CC responds via the `reply` tool.",
+      "category": "productivity",
+      "source": "./plugins/cloudplayplus",
+      "homepage": "https://www.cloudplayplus.com/"
+    }
+  ]
+}
