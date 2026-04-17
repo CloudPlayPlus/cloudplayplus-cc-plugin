@@ -6,7 +6,7 @@ Code as channel events; Claude's replies go back through the `reply` tool.
 
 Unlike `fakechat` / `discord` / `telegram`, this plugin carries **no server
 code of its own**. The MCP server runs inside the long-running CloudPlayPlus
-Flutter app (via the [`cloudplayplus_agent`](https://github.com/zhuhaichao518/cloudplayplus_agent)
+Flutter app (via the [`cloudplayplus_agent`](https://github.com/CloudPlayPlus/cloudplayplus_agent)
 Dart package) and listens on `http://127.0.0.1:48989/mcp`. This plugin just
 tells Claude Code where to connect.
 
