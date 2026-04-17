@@ -41,7 +41,34 @@ in the CloudPlayPlus UI.
 | Tool | Purpose |
 | --- | --- |
 | `reply` | Send a reply back to the CloudPlayPlus UI. Takes `chat_id` + `text`; optionally `reply_to` (message ID) and `files`. |
+| `react` | Attach an emoji reaction to an existing message. |
 | `edit_message` | Edit a previously-sent message in place. |
+| `fetch_messages` | Look back at recent messages in a chat. |
+| `download_attachment` | Materialize attachments of a specific message as local files. |
+
+## Skip permission prompts for channel tools
+
+Because this plugin connects over a local HTTP MCP endpoint (not a Claude
+Code-spawned stdio subprocess like `fakechat` / `discord`), Claude Code
+treats the tools as ordinary MCP calls and asks for permission on first
+use. Pre-approve all five channel tools once by adding this to
+`~/.claude/settings.json` (user scope) or `.claude/settings.local.json` in
+your project:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_cloudplayplus_cloudplayplus__*"
+    ]
+  }
+}
+```
+
+Rule name format is `mcp__plugin_<plugin>_<server>__<tool>`; the wildcard
+covers `reply` / `react` / `edit_message` / `fetch_messages` /
+`download_attachment`. You can also click **Yes, don't ask again** the
+first time each prompt appears — Claude Code writes the same rules itself.
 
 ## Security
 
