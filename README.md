@@ -1,19 +1,26 @@
 # cloudplayplus
 
-Bridges Claude Code to a running [CloudPlayPlus](https://www.cloudplayplus.com/)
-Flutter app. Messages from remote CloudPlayPlus users are pushed into Claude
-Code as channel events; Claude's replies go back through the `reply` tool.
+Channel plugin that bridges Claude Code to a long-running local Flutter app.
+Messages typed in the app are pushed into Claude Code as channel events; the
+assistant's replies go back through the `reply` tool and render in the app.
 
-Unlike `fakechat` / `discord` / `telegram`, this plugin carries **no server
-code of its own**. The MCP server runs inside the long-running CloudPlayPlus
-Flutter app (via the [`cloudplayplus_agent`](https://github.com/CloudPlayPlus/cloudplayplus_agent)
-Dart package) and listens on `http://127.0.0.1:48989/mcp`. This plugin just
-tells Claude Code where to connect.
+This repo ([CloudPlayPlus/cloudplayplus-cc-plugin](https://github.com/CloudPlayPlus/cloudplayplus-cc-plugin))
+is just the plugin manifest — no runtime code. The MCP server lives in a
+separate Dart package, [`cloudplayplus_agent`](https://github.com/CloudPlayPlus/cloudplayplus_agent),
+which ships a ready-to-run Flutter example you can build on macOS / Windows /
+Linux. The example binds `http://127.0.0.1:48989/mcp` and is exactly what
+the plugin points at. Eventually the full [CloudPlayPlus](https://www.cloudplayplus.com/)
+product will embed this package so remote CloudPlayPlus users can chat with
+a Claude Code session on the host machine, but the Flutter example already
+shows the whole flow end-to-end.
 
 ## Prerequisites
 
-1. A running CloudPlayPlus Flutter app exposing the MCP HTTP server on
-   `http://127.0.0.1:48989/mcp`.
+1. A Flutter app running the [`cloudplayplus_agent`](https://github.com/CloudPlayPlus/cloudplayplus_agent)
+   MCP HTTP server on `http://127.0.0.1:48989/mcp`. The
+   [`example/`](https://github.com/CloudPlayPlus/cloudplayplus_agent/tree/main/example)
+   directory in that repo has a minimal chat UI you can `flutter run` right
+   now; any host app that embeds `CloudplayAgent` works.
 2. Claude Code 2.1 or later.
 
 ## Setup
