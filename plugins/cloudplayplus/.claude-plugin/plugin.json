@@ -13,5 +13,10 @@
     "channel",
     "mcp",
     "flutter"
+  ],
+  "channels": [
+    {
+      "server": "cloudplayplus"
+    }
   ]
 }
